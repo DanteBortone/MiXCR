@@ -1,10 +1,9 @@
-Package: StarSalmon
-Version: 0.0-07
-Title: Functions for writing commands and post processing the Star Salmon pipeline.
+Package: MiXCR
+Version: 0.0-01
+Title: Functions for writing commands and post processing the MiXCR pipeline.
 Description: Given a sample data matrix that indicate the sample name, sample folder name and input paths
-    this script can write out pipeline commands to run star salmon on the cluster and post process the
-    data into ucsc_isoform_counts.tsv and hgnc_entrezid_gene_counts.tsv.  Only ucsc pipeline outputs 
-    are handled at this time.
+    this script can write out pipeline commands to run MiXCR on the cluster and post process sample diversity 
+    metrics.
 Authors@R: 
     person(given = "Dante",
            family = "Bortone",
@@ -16,7 +15,7 @@ Depends:
     parallel,
     binfotron,
     checkmate
-BugReports: https://github.com/DanteBortone/StarSalmon/issues
+BugReports: https://github.com/DanteBortone/MiXCR/issues
 License: MIT + file LICENSE
 NeedsCompilation: no
 RoxygenNote: 6.1.1
