@@ -6,7 +6,7 @@
 \usage{
 post_process_mixcr(input_file_paths, output_dir, sample_data_path,
   my_chains = my_chains, sample_folder_column = "Sample_Folder",
-  sample_id_column = "Sample_ID", thread_num = 16)
+  sample_id_column = "Sample_ID", thread_num = 1)
 }
 \arguments{
 \item{input_file_paths}{Character vector of paths to the pipeline output data.}

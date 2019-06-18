@@ -8,7 +8,7 @@ data.
 ## Assembling this package
 In R:
 ``` r
-housekeeping::assemble_package(package_name = "MiXCR", my_version = "0.0-01",
+housekeeping::assemble_package(package_name = "MiXCR", my_version = "0.0-02",
   my_dir = "/datastore/alldata/shiny-server/rstudio-common/dbortone/packages/MiXCR")
 ```
 
@@ -18,7 +18,7 @@ In bash:
 cd /datastore/alldata/shiny-server/rstudio-common/dbortone/packages/MiXCR
 my_comment="Assembled package."
 git commit -am "$my_comment"; git push origin master
-git tag -a 0.0-01 -m "$my_comment"; git push -u origin --tags
+git tag -a 0.0-02 -m "$my_comment"; git push -u origin --tags
 ```
 
 ## Install
@@ -30,5 +30,5 @@ devtools::install_github("DanteBortone/MiXCR")
 
 Or for a specific version:
 ``` r
-devtools::install_github("DanteBortone/MiXCR", ref = "0.0-01")
+devtools::install_github("DanteBortone/MiXCR", ref = "0.0-02")
 ```
