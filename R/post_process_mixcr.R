@@ -33,7 +33,7 @@ post_process_mixcr = function(
   my_chains = my_chains,
   sample_folder_column = "Sample_Folder",
   sample_id_column = "Sample_ID",
-  thread_num = 16
+  thread_num = 1
 ){
   library(binfotron)
   
@@ -73,6 +73,13 @@ post_process_mixcr = function(
   }
   
   a("Post processing MiXCR diversity using MiXCR::post_process_mixcr v", packageVersion("MiXCR"))
+  a("")
+  a("Diversity metrics are calculated on each chain type seperately.")
+  a("NT metrics are by nucleotide sequence diversity")
+  a("AA metrics are by amino acid sequence diversity")
+  a("VRegion metrics are by V region (top hit) diversity")
+  a("JRegion metrics are by J region (top hit) diversity")
+  a("Chain abundance and fraction are the same across NT, AA, VRegion, and JRegion")
   
   sample_dat = fread(sample_data_path, data.table = F, select = c(sample_id_column, sample_folder_column))
   sample_lut = sample_dat[[sample_id_column]]
@@ -177,7 +184,7 @@ post_process_mixcr = function(
       }
     }
     return(output_list)
-  }, mc.cores = thread_num)
+  }, mc.cores = 1)
   
   dat = rbindlist(my_mclapply_output, use.names = T, fill = T)
   # now do gene level counts
