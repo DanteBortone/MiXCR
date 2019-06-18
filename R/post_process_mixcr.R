@@ -72,7 +72,7 @@ post_process_mixcr = function(
     message(my_output)
   }
   
-  a("Post processing MiXCR diversity using MiXCR::post_process_mixcr version: ", packageVersion("MiXCR"))
+  a("Post processing MiXCR diversity using MiXCR::post_process_mixcr v", packageVersion("MiXCR"))
   
   sample_dat = fread(sample_data_path, data.table = F, select = c(sample_id_column, sample_folder_column))
   sample_lut = sample_dat[[sample_id_column]]
