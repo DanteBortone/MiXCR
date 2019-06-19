@@ -80,6 +80,7 @@ post_process_mixcr = function(
   a("VRegion metrics are by V region (top hit) diversity")
   a("JRegion metrics are by J region (top hit) diversity")
   a("Chain abundance and fraction are the same across NT, AA, VRegion, and JRegion")
+  a("")
   
   sample_dat = fread(sample_data_path, data.table = F, select = c(sample_id_column, sample_folder_column))
   sample_lut = sample_dat[[sample_id_column]]
@@ -142,9 +143,22 @@ post_process_mixcr = function(
     
     # for each chain do our own diversity metrics and write out the vdjtool matrices
     for(my_chain in my_chains){
-      my_abundance = sum(nt_dt$Count[nt_dt$Chain == my_chain])
+      chain_df = nt_dt[nt_dt$Chain == my_chain, ]
+      my_abundance = sum(chain_df$Count)
       output_list[paste0(my_chain,"_Abundance")] = my_abundance
       output_list[paste0(my_chain,"_Fraction")] = my_abundance/total_abundance
+      
+      #' https://www.biorxiv.org/content/biorxiv/early/2019/06/14/665612.full.pdf
+      #' TCR convergence was calculated as the aggregate frequency of clones sharing a variable gene 
+      #' (excluding allele information) and CDR3AA sequence with at least one other identified clone.
+      my_richness = nrow(chain_df)
+      if(my_richness > 1){
+        repeat_aacdr3_counts = summary(factor(chain_df$aaCDR3),  maxsum = Inf)
+        output_list[paste0(my_chain,"_Convergence")] = sum(repeat_aacdr3_counts[repeat_aacdr3_counts >1])/my_richness
+      } else {
+        output_list[paste0(my_chain,"_Convergence")] = NA
+      }
+
     }
     
     list_dts = list(nt_dt, aa_dt, v_dt, j_dt)
