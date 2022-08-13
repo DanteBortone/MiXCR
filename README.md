@@ -1,3 +1,5 @@
+This repo is antiquated and has largely been absorbed by binfotron here: https://github.com/Benjamin-Vincent-Lab/binfotron
+
 Functions for writing commands and post processing the MiXCR pipeline.
 
 Given a sample data matrix that indicates the sample name, sample folder name and input paths
